@@ -8,6 +8,7 @@
 			<td align="center">1.4.3</td>
 			<td align="left">
 				<ul>
+					<li>Updated to the latest patch as of Sep 18, 2026</li>
 					<li>Removed Jotunn dependency. Config sync now uses embedded ServerSync (BepInEx only).</li>
 					<li>Removed Localization.instance call from cart hover text.</li>
 					<li>Added version check via embedded VersionCheck.</li>

@@ -206,7 +206,7 @@ Changes made to the configuration settings will be reflected in-game immediately
 None so far, tell me if you find any.
 
 ## Donations/Tips
-Author of original mod: | [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/searica) |
+Author of original mod: | <img height="18" src="https://github.githubassets.com/favicons/favicon-dark.svg"></img> [searica](https://github.com/searica) |
 |-----------|---------------|
 
 ## Source Code

@@ -1,5 +1,5 @@
 #Disclaimer
-Most of mods I work with are some old and outdated ones that their authors haven't updated so far to match 1.0. I am not a professional modder myself, but I am good with coding and gaming. If you experience any problems with the mods I published, you can find me in <a href=https://discord.com/channels/1522110224947871817/1522118606937133136>Hexium</a> discord server by typing DMT.
+Most of mods I work with are some old and outdated ones that their authors haven't updated so far to match 1.0. I am not a professional modder myself, but I am good with coding and gaming. If you experience any problems with the mods I published, you can find me in <a href=https://discord.com/channels/1522110224947871817/1522118606937133136>Hexium</a> discord server by typing DMT. 
 
 # SkilledCarryWeight
 Increases max carry weight based on skill level. The skills that increase max carry weight and the amount they increase it by are completely configurable. Also adds a quick attach/detach feature for carts and can configure increasing your max carry weight to make carts to be easier to pull. Uses embedded ServerSync to sync configuration if installed on server.
@@ -208,6 +208,7 @@ None so far, tell me if you find any.
 ## Donations/Tips
 Author of original mod: | <img height="18" src="https://github.githubassets.com/favicons/favicon-dark.svg"></img> [searica](https://github.com/searica) |
 |-----------|---------------|
+Support me: | [![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-daiminhtri-yellow)](https://buymeacoffee.com/daiminhtri) |
 
 ## Source Code
 Source code is available on Github. This is a fork of the original mod.

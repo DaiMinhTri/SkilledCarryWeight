@@ -162,7 +162,7 @@ namespace SkilledCarryWeight {
 
             var allSkills = (Skills.SkillType[])AccessTools.Field(typeof(Skills), "s_allSkills").GetValue(null);
             foreach (var skillType in allSkills) {
-                if (skillType == Skills.SkillType.All) { continue; }
+                if (skillType == Skills.SkillType.None || skillType == Skills.SkillType.All) { continue; }
 
                 var skillName = skillType.ToString();
                 var skillConfig = new SkillConfig();

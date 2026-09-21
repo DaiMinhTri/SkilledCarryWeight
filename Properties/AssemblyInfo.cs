@@ -9,7 +9,6 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("SkilledCarryWeight")]
-[assembly: AssemblyCopyright("Copyright © 2023-2026 DaiMinhTri")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

@@ -50,7 +50,7 @@ A configuration file is generated at `BepInEx/config/DMT.SkilledCarryWeight.cfg`
 | Skill | Coefficient | 0.25 | Multiplier for skill level (0-10) |
 | Skill | Power | 1.0 | Exponent for skill level (0-10) |
 
-> **Note:** Skills enabled by default: Run, Jump, Swim, WoodCutting, Pickaxes, Ride, Sneak, Dodge, Farming. All other skills are disabled by default but can be enabled in the config.
+> **Note:** Skills enabled by default: Run, Jump, Swim, WoodCutting, Pickaxes, Ride, Sneak. All other skills are disabled by default but can be enabled in the config.
 
 ## Compatibility
 
@@ -77,8 +77,6 @@ If you enjoy this mod, consider buying me a coffee: [![Buy Me A Coffee](https://
 
 ### 1.4.4
 - Updated for Deep North release
-- Enabled Farming and Dodge skills by default
-- Changed default cart keybind to avoid conflicting with new hotbar
 - Replaced Jotunn dependency with embedded ServerSync library
 
 ### 1.4.1

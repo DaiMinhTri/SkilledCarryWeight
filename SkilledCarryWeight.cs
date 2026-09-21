@@ -212,8 +212,6 @@ namespace SkilledCarryWeight {
                 case Skills.SkillType.Pickaxes:
                 case Skills.SkillType.Ride:
                 case Skills.SkillType.Sneak:
-                case Skills.SkillType.Dodge:
-                case Skills.SkillType.Farming:
                     return true;
                 default:
                     return false;

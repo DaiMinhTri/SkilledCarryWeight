@@ -70,7 +70,7 @@ If you enjoy this mod, consider buying me a coffee: [![Buy Me A Coffee](https://
 
 ## Changelog
 
-### 1.5.0
+### 1.4.4
 - Updated for Deep North release
 - Enabled Farming and Dodge skills by default
 - Changed default cart keybind to avoid conflicting with new hotbar

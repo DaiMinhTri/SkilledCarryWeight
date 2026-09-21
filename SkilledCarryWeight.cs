@@ -17,7 +17,7 @@ namespace SkilledCarryWeight {
     internal sealed class SkilledCarryWeight : BaseUnityPlugin {
         public const string PluginName = "SkilledCarryWeight";
         public const string PluginGUID = $"DMT.{PluginName}";
-        public const string PluginVersion = "1.5.0";
+        public const string PluginVersion = "1.4.4";
 
         private static readonly ConfigSync configSync = new(PluginGUID) { DisplayName = PluginName, CurrentVersion = PluginVersion, MinimumRequiredVersion = PluginVersion };
 

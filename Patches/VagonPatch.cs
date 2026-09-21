@@ -9,7 +9,8 @@ namespace SkilledCarryWeight.Patches {
         private static void SetMassPrefix(Vagon __instance, ref float mass) {
             if (!SkilledCarryWeight.EnableCartPatch.Value) { return; }
 
-            if (!__instance || __instance.m_nview == null || !__instance.m_nview.IsOwner()) { return; }
+            var nview = (ZNetView)AccessTools.Field(typeof(Vagon), "m_nview").GetValue(__instance);
+            if (!__instance || nview == null || !nview.IsOwner()) { return; }
 
             if (__instance.IsAttached(Player.m_localPlayer)) {
                 var player = Player.m_localPlayer;

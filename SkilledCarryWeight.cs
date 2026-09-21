@@ -160,7 +160,7 @@ namespace SkilledCarryWeight {
                 configSync: configSync
             );
 
-            var allSkills = (System.Collections.Generic.List<Skills.SkillType>)AccessTools.Field(typeof(Skills), "s_allSkills").GetValue(null);
+            var allSkills = (Skills.SkillType[])AccessTools.Field(typeof(Skills), "s_allSkills").GetValue(null);
             foreach (var skillType in allSkills) {
                 if (skillType == Skills.SkillType.All) { continue; }
 

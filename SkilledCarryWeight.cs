@@ -135,7 +135,7 @@ namespace SkilledCarryWeight {
             QuickCartKey = ConfigManager.BindConfig(
                 QuickCartSection,
                 "QuickCartKey",
-                KeyCode.H,
+                KeyCode.G,
                 "The hotkey used to attach to or detach from a nearby cart.",
                 synced: false,
                 configSync: configSync

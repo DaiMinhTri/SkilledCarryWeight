@@ -22,7 +22,7 @@ When `CarryWeightAffectsCart` is enabled, your increased max carry weight reduce
 Formula: `ModifiedMass = Max(Mass * (1 - MaxMassReduction), Mass * (MinCarryWeight/MaxCarryWeight) ^ Power)`
 
 ### Quick Cart
-Press a hotkey (default `G`) to quickly attach to or detach from a nearby cart. Configurable attach distance and out-of-place attachment option.
+Press a hotkey (default `H`) to quickly attach to or detach from a nearby cart. Configurable attach distance and out-of-place attachment option.
 
 ## Differences from Searica's Version
 
@@ -43,7 +43,7 @@ A configuration file is generated at `BepInEx/config/DMT.SkilledCarryWeight.cfg`
 | Cart Mass | Power | 1.0 | How much carry weight affects cart mass (0-3) |
 | Cart Mass | MaxMassReduction | 0.70 | Maximum cart mass reduction (0-1) |
 | Cart Mass | MinCarryWeight | 300 | Minimum carry weight before cart reduction applies (300-1000) |
-| Quick Cart | QuickCartKey | G | Hotkey to attach/detach from cart (not synced) |
+| Quick Cart | QuickCartKey | H | Hotkey to attach/detach from cart (not synced) |
 | Quick Cart | AttachDistance | 5 | Max distance to attach a cart (2-8) |
 | Quick Cart | AttachOutOfPlace | On | Allow attaching cart when out of place |
 | Skill | Enabled | Varies | Enable this skill to increase carry weight |

@@ -370,3 +370,7 @@ FodyWeavers.xsd
 
 # not the generated dll for thunderstore
 */Package/plugins/*
+
+# Release binary artifacts
+Publish/**/*.dll
+Publish/**/*.zip

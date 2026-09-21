@@ -2,7 +2,7 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 	<PropertyGroup>
 		<PackageDir>$(ProjectDir)Package</PackageDir>
-		<PublishDir>$(PojectDir)Publish</PublishDir>
+		<PublishDir>$(ProjectDir)Publish</PublishDir>
 	</PropertyGroup>
 	<Target Name="CreateMdbFile" BeforeTargets="CopyDLLToPlugins" Condition="'$(Configuration)' == 'Debug'">
 		<Message Text="Creating the mdb debug file" Importance="high" Condition="Exists('$(Pdb2MdbPath)')" />
@@ -40,8 +40,6 @@
 		<MakeDir Directories="$(PublishDir)\Nexus" />
 		<Message Text="Copying $(TargetFileName) to $(PublishDir)\Nexus" Importance="high" />
 		<Copy SourceFiles="$(TargetPath)" DestinationFolder="$(PublishDir)\Nexus" />
-		<Message Text="Compressing..." Importance="high" />
-		<Exec Command="powershell.exe -Command &quot;Compress-Archive -Path &apos;$(PublishDir)\Nexus\*&apos; -DestinationPath &apos;$(PublishDir)\Nexus\$(AssemblyName).zip&apos;&quot; -Force" Condition="'$(OS)' == 'Windows_NT'" />
 		<Message Text="Nexus package created" Importance="high" />
 	</Target>
 

@@ -1,247 +1,108 @@
-# SkilledCarryWeight
-Increases max carry weight based on skill level. The skills that increase max carry weight and the amount they increase it by are completely configurable. Also adds a quick attach/detach feature for carts and can configure increasing your max carry weight to make carts to be easier to pull. Uses Jotunn to sync configuration if installed on server.
+> **Disclaimer:**
+> Most of mods I work with are some old and outdated ones that their authors haven't updated so far to match 1.0. I am not a professional modder myself, but I am good with coding and gaming. If you experience any problems with the mods I published, you can find me in <a href="https://discord.com/channels/1522110224947871817/1522118606937133136">Hexium</a> discord server by typing DMT.
 
-**Server-Side Info**: This mod does work as a client-side only mod and only needs to be installed on the server if you wish to enforce configuration settings.
+# DMT-SkilledCarryWeight
 
-## Details
-Vanilla skills are automatically detected so if new skills get added in a future update this mod will let you configure how they affect your max carry weight. 
+A Valheim mod that increases max carry weight based on skill level.
+[Fork/update of Searica's SkilledCarryWeight](https://thunderstore.io/c/valheim/p/Searica/SkilledCarryWeight/), maintained for Valheim 1.0.x.
+Independent fork — no Jotunn dependency, uses embedded ServerSync.
 
-Max carry weight is increased based on skill level for each skill enabled in the configuration using the following equation: 
-```
-Increase = Coefficient * ((Skill Level) ^ Power)
-```
+**GitHub:** <img height="18" src="https://github.githubassets.com/favicons/favicon-dark.svg"></img> [DaiMinhTri/SkilledCarryWeight](https://github.com/DaiMinhTri/SkilledCarryWeight)
 
-Effective cart mass if calculated using the following equation if `CarryWeightAffectsCart` is enabled.
-```
-ModifiedMass = Max(
-	Mass * (1 - MaxMassReduction), 
-	Mass * (MinCarryWeight/MaxCarryWeight) ^ Power
-)
-```
+## Features
+
+### Skill-Based Carry Weight
+Max carry weight increases based on skill level for each enabled skill. All vanilla skills are auto-detected, so new skills added in future updates will automatically be available for configuration.
+
+Formula: `Increase = Coefficient * (Skill Level ^ Power)`
+
+### Cart Mass Reduction
+When `CarryWeightAffectsCart` is enabled, your increased max carry weight reduces the effective mass of carts you pull, making them easier to haul. A minimum carry weight threshold and maximum reduction cap prevent carts from becoming trivial.
+
+Formula: `ModifiedMass = Max(Mass * (1 - MaxMassReduction), Mass * (MinCarryWeight/MaxCarryWeight) ^ Power)`
+
+### Quick Cart
+Press a hotkey (default `H`) to quickly attach to or detach from a nearby cart. Configurable attach distance and out-of-place attachment option.
+
+### Server-Side Control
+Configuration is synced from the server using embedded ServerSync. Clients cannot change synced settings unless the server allows it. Settings are also hot-reloadable via a file watcher or in-game configuration manager.
 
 ## Configuration
-Changes made to the configuration settings will be reflected in-game immediately (no restart required) and they will also sync to clients if the mod is on the server. The mod also has a built in file watcher so you can edit settings via an in-game configuration manager (changes applied upon closing the in-game configuration manager) or by changing values in the file via a text editor or mod manager.
 
+A configuration file is generated at `BepInEx/config/DMT.SkilledCarryWeight.cfg` after the first launch.
 
-<div class="header">
-	<h3>Global Section</h3>
-    These settings control how verbose the output to the log is.
-</div>
-<table>
-	<tbody>
-		<tr>
-            <th align="center">Setting</th>
-            <th align="center">Server Sync</th>
-			<th align="center">Description</th>
-		</tr>
-            <td align="center"><b>Verbosity</b></td>
-            <td align="center">No</td>
-			<td align="left">
-                Low will log basic information about the mod. Medium will log information that is useful for troubleshooting. High will log a lot of information, do not set it to this without good reason as it will slow down your game.
-				<ul>
-					<li>Acceptable values: Low, Medium, High</li>
-					<li>Default value: Low</li>
-				</ul>
-			</td>
-		</tr>
-  </tbody>
-</table>
+| Section | Setting | Default | Description |
+|---------|---------|---------|-------------|
+| Global | Verbosity | Low | Log level: Low, Medium, High (not synced) |
+| Cart Mass | CarryWeightAffectsCart | On | Reduce cart mass based on carry weight |
+| Cart Mass | Power | 1.0 | How much carry weight affects cart mass (0-3) |
+| Cart Mass | MaxMassReduction | 0.70 | Maximum cart mass reduction (0-1) |
+| Cart Mass | MinCarryWeight | 300 | Minimum carry weight before cart reduction applies (300-1000) |
+| Quick Cart | QuickCartKey | H | Hotkey to attach/detach from cart (not synced) |
+| Quick Cart | AttachDistance | 5 | Max distance to attach a cart (2-8) |
+| Quick Cart | AttachOutOfPlace | On | Allow attaching cart when out of place |
+| Skill | Enabled | Varies | Enable this skill to increase carry weight |
+| Skill | Coefficient | 0.25 | Multiplier for skill level (0-10) |
+| Skill | Power | 1.0 | Exponent for skill level (0-10) |
 
-<div class="header">
-	<h3>Cart Mass Section</h3>
-    These settings control how your maximum carry weight affects the mass of carts and how easy they are to pull.
-</div>
-<table>
-	<tbody>
-		<tr>
-            <th align="center">Setting</th>
-            <th align="center">Server Sync</th>
-			<th align="center">Description</th>
-		</tr>
-		<tr>
-            <td align="center"><b>CarryWeightAffectsCart</b></td>
-            <td align="center">Yes</td>
-			<td align="left">
-                Set to true/enabled to allow your max carry weight affect how easy carts are to pull by reducing the mass of carts you pull.
-				<ul>
-					<li>Acceptable values: False, True</li>
-					<li>Default value: true</li>
-				</ul>
-			</td>
-		</tr>
-        <tr>
-            <td align="center"><b>MaxMassReduction</b></td>
-            <td align="center">Yes</td>
-			<td align="left">
-                Maximum reduction in cart mass due to increased max carry weight. Limits effective cart mass to always be equal to or greater than: <br>Mass * (1 - MaxMassReduction).
-				<ul>
-					<li>Acceptable values: (0, 1)</li>
-					<li>Default value: 0.7</li>
-				</ul>
-			</td>
-		</tr>
-		<tr>
-            <td align="center"><b>MinCarryWeight</b></td>
-            <td align="center">Yes</td>
-			<td align="left">
-                Minimum value your maximum carry weight must be before it starts making carts easier to pull.
-				<ul>
-					<li>Acceptable values: (300, 1000)</li>
-					<li>Default value: 300</li>
-				</ul>
-			</td>
-		</tr>
-		<tr>
-            <td align="center"><b>Power</b></td>
-            <td align="center">Yes</td>
-			<td align="left">
-                Affects how much your maximum carry weight making pulling carts easier. Higher powers make your maximum carry weight reduce the mass of carts more.
-				<ul>
-					<li>Acceptable values: (0, 3)</li>
-					<li>Default value: 1</li>
-				</ul>
-			</td>
-		</tr>
-  </tbody>
-</table>
+> **Note:** Skills enabled by default: Run, Jump, Swim, WoodCutting, Pickaxes, Ride, Sneak, Dodge, Farming. All other skills are disabled by default but can be enabled in the config.
 
-<div class="header">
-	<h3>Quick Cart Section</h3>
-    These settings control how attaching and detaching to carts work.
-</div>
-<table>
-	<tbody>
-		<tr>
-            <th align="center">Setting</th>
-            <th align="center">Server Sync</th>
-			<th align="center">Description</th>
-		</tr>
-		<tr>
-            <td align="center"><b>QuickCartKey</b></td>
-            <td align="center">No</td>
-			<td align="left">
-                The hotkey used to attach to or detach from a nearby cart.
-				<ul>
-					<li>Acceptable values: KeyCode</li>
-					<li>Default value: G</li>
-				</ul>
-			</td>
-		</tr>
-        <tr>
-            <td align="center"><b>AttachDistance</b></td>
-            <td align="center">Yes</td>
-			<td align="left">
-                Maximum distance to attach a cart from.
-				<ul>
-					<li>Acceptable values: (2, 8)</li>
-					<li>Default value: 5</li>
-				</ul>
-			</td>
-		</tr>
-		<tr>
-            <td align="center"><b>AttachOutOfPlace</b></td>
-            <td align="center">Yes</td>
-			<td align="left">
-                Allow attaching the cart even when out of place.
-				<ul>
-					<li>Acceptable values: False, True</li>
-					<li>Default value: true</li>
-				</ul>
-			</td>
-		</tr>
-  </tbody>
-</table>
+## Compatibility
 
-<div class="header">
-	<h3>Individual Skill Sections</h3>
-    Each skill gets it's own section with the following configuration options.
-</div>
-<table>
-	<tbody>
-		<tr>
-            <th align="center">Setting</th>
-            <th align="center">Server Sync</th>
-			<th align="center">Description</th>
-		</tr>
-		<tr>
-            <td align="center"><b>Enabled</b></td>
-            <td align="center">Yes</td>
-			<td align="left">
-                Set to true/enabled to allow this skill to increase your max carry weight.
-				<ul>
-					<li>Acceptable values: False, True</li>
-					<li>Default value: <i>Depends on the skill</i></li>
-				</ul>
-			</td>
-		</tr>
-        <tr>
-            <td align="center"><b>Coefficient</b></td>
-            <td align="center">Yes</td>
-			<td align="left">
-                Value to multiply the skill level by to determine how much extra carry weight it grants.
-				<ul>
-					<li>Acceptable values: (0, 10)</li>
-					<li>Default value: 0.25</li>
-				</ul>
-			</td>
-		</tr>
-		<tr>
-            <td align="center"><b>Power</b></td>
-            <td align="center">Yes</td>
-			<td align="left">
-                Power the skill level is raised to before multiplying by Coefficient to determine extra carry weight.
-				<ul>
-					<li>Acceptable values: (0, 10)</li>
-					<li>Default value: 1</li>
-				</ul>
-			</td>
-		</tr>
-  </tbody>
-</table>
+- **Standalone** — no Jotunn dependency; uses embedded ServerSync for config sync.
+- Should be compatible with any mod that does not modify `Player.GetMaxCarryWeight` or `Vagon.GetHoverText`.
+- Auto-detects all vanilla and modded skills from `Skills.s_allSkills`.
 
-## Known Issues
-None so far, tell me if you find any.
+## Installation
 
-## Donations/Tips
-My mods will always be free to use but if you feel like saying thanks you can tip/donate.
+1. Install [BepInEx](https://valheim.thunderstore.io/package/denikson/BepInExPack_Valheim/)
+2. Download and extract `SkilledCarryWeight.dll` into your `BepInEx/plugins/` folder
+3. Launch the game to generate the config file
 
-| My Ko-fi: | [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/searica) |
-|-----------|---------------|
+## Credits
 
-## Source Code
-Source code is available on Github.
+- Original mod by **Searica**
+- ServerSync library by **Blitz**
 
-| Github Repository: | <img height="18" src="https://github.githubassets.com/favicons/favicon-dark.svg"></img><a href="https://github.com/searica/SkilledCarryWeight"> SkilledCarryWeight</a> |
-|-----------|---------------|
+## Buy Me a Coffee
 
-### Contributions
-If you would like to provide suggestions, make feature requests, or reports bugs and compatibility issues you can either open an issue on the Github repository or tag me (@searica) with a message on my discord [Searica's Mods](https://discord.gg/sFmGTBYN6n).
+If you enjoy this mod, consider buying me a coffee: [![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-daiminhtri-yellow)](https://buymeacoffee.com/daiminhtri)
 
-I'm a grad student and have a lot of personal responsibilities on top of that so I can't promise I will respond quickly, but I do intend to maintain and improve the mod in my free time.
+## Changelog
 
-## Shameless Self Plug (Other Mods By Me)
-If you like this mod you might like some of my other ones.
+### 1.5.0
+- Updated for Deep North release
+- Enabled Farming and Dodge skills by default
+- Changed default cart keybind to avoid conflicting with new hotbar
+- Replaced Jotunn dependency with embedded ServerSync library
 
-#### Building Mods
-- [More Vanilla Build Prefabs](https://thunderstore.io/c/valheim/p/Searica/More_Vanilla_Build_Prefabs/)
-- [Extra Snap Points Made Easy](https://thunderstore.io/c/valheim/p/Searica/Extra_Snap_Points_Made_Easy/)
-- [AdvancedTerrainModifiers](https://thunderstore.io/c/valheim/p/Searica/AdvancedTerrainModifiers/)
-- [BuildRestrictionTweaksSync](https://thunderstore.io/c/valheim/p/Searica/BuildRestrictionTweaksSync/)
-- [ToolTweaks](https://thunderstore.io/c/valheim/p/Searica/ToolTweaks/)
-- [MeasureTwice](https://thunderstore.io/c/valheim/p/Searica/MeasureTwice/)
+### 1.4.1
+- Added version check to enforce same version on client and server
+- Updated to Jotunn 2.22.0 and restored pre Bog Witch config syncing behavior
 
-#### Gameplay Mods
-- [CameraTweaks](https://thunderstore.io/c/valheim/p/Searica/CameraTweaks/)
-- [DodgeShortcut](https://thunderstore.io/c/valheim/p/Searica/DodgeShortcut/)
-- [DiscoveryPins](https://thunderstore.io/c/valheim/p/Searica/DiscoveryPins/)
-- [ExplorersVision](https://thunderstore.io/c/valheim/p/Searica/ExplorersVision/)
-- [FortifySkillsRedux](https://thunderstore.io/c/valheim/p/Searica/FortifySkillsRedux/)
-- [ProjectileTweaks](https://thunderstore.io/c/valheim/p/Searica/ProjectileTweaks/)
-- [SkilledCarryWeight](https://thunderstore.io/c/valheim/p/Searica/SkilledCarryWeight/)
-- [SafetyStatus](https://thunderstore.io/c/valheim/p/Searica/SafetyStatus/)
-- [ShowMeTheGoods](https://thunderstore.io/c/valheim/p/Searica/ShowMeTheGoods/)
-- [WatchWhereYouStab](https://thunderstore.io/c/valheim/p/Searica/WatchWhereYouStab/)
+### 1.4.0
+- Updated for Bog Witch release
 
-#### Networking Mods
-- [NetworkTweaks](https://thunderstore.io/c/valheim/p/Searica/NetworkTweaks/)
-- [OpenSesame](https://thunderstore.io/c/valheim/p/Searica/OpenSesame/)
+### 1.3.0
+- Updated for Ashlands release
+
+### 1.2.1
+- Compiled against new version and updated Jotunn dependency
+
+### 1.2.0
+- Added quick attach/detach option for carts
+
+### 1.1.2
+- Bugfix for cart mass not being decreased correctly
+
+### 1.1.1
+- Fix README format
+
+### 1.1.0
+- Added options to reduce cart mass based on max carry weight
+- Compiled against newest game version
+- Minor performance optimizations
+- Updated icon
+
+### 1.0.0/1.0.1
+- Initial release

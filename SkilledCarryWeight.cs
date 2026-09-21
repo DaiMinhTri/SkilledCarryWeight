@@ -16,7 +16,7 @@ using ServerSync;
 namespace SkilledCarryWeight {
     [BepInPlugin(PluginGUID, PluginName, PluginVersion)]
     internal sealed class SkilledCarryWeight : BaseUnityPlugin {
-        internal const string Author = "Searica";
+        internal const string Author = "DMT";
         public const string PluginName = "SkilledCarryWeight";
         public const string PluginGUID = $"DMT.{PluginName}";
         public const string PluginVersion = "1.5.0";

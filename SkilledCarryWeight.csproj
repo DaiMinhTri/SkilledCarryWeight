@@ -40,11 +40,6 @@
 		<StartWorkingDirectory>$(VALHEIM_INSTALL)</StartWorkingDirectory>
 	</PropertyGroup>
 	<ItemGroup>
-		<Compile Remove="Package\plugins\**" />
-		<EmbeddedResource Remove="Package\plugins\**" />
-		<None Remove="Package\plugins\**" />
-	</ItemGroup>
-	<ItemGroup>
 		<Content Include="Package\icon.png" />
 	</ItemGroup>
 	<ItemGroup>
@@ -88,10 +83,6 @@
 			<HintPath>$(VALHEIM_MANAGED)/Unity.TextMeshPro.dll</HintPath>
 			<SpecificVersion>False</SpecificVersion>
 		</Reference>
-	</ItemGroup>
-	<ItemGroup>
-		<Folder Include="Publish\Nexus\" />
-		<Folder Include="Publish\ThunderStore\" />
 	</ItemGroup>
 	<PropertyGroup>
 		<GeneratePackageOnBuild>False</GeneratePackageOnBuild>

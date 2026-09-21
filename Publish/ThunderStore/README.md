@@ -1,10 +1,11 @@
 > **Disclaimer:**
 > Most of mods I work with are some old and outdated ones that their authors haven't updated so far to match 1.0. I am not a professional modder myself, but I am good with coding and gaming. If you experience any problems with the mods I published, you can find me in <a href="https://discord.com/channels/1522110224947871817/1522118606937133136">Hexium</a> discord server by typing DMT.
 
-# SkilledCarryWeight
+# DMT-SkilledCarryWeight
 
 A Valheim mod that increases max carry weight based on skill level.
 [Fork/update of Searica's SkilledCarryWeight](https://thunderstore.io/c/valheim/p/Searica/SkilledCarryWeight/), maintained for Valheim 1.0.x.
+Independent fork — no Jotunn dependency, uses embedded ServerSync.
 
 **GitHub:** <img height="18" src="https://github.githubassets.com/favicons/favicon-dark.svg"></img> [DaiMinhTri/SkilledCarryWeight](https://github.com/DaiMinhTri/SkilledCarryWeight)
 

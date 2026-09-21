@@ -23,7 +23,7 @@
 		<Message Text="Copy succeeded" Importance="high" />
 	</Target>
 
-	<Target Name="CoppyDLLToServer" AfterTargets="CopyDLLToPlugins" Condition="'$(Configuration)' == 'Debug' And '$(CopyToServer)' == 'true'">
+	<Target Name="CopyDLLToServer" AfterTargets="CopyDLLToPlugins" Condition="'$(Configuration)' == 'Debug' And '$(CopyToServer)' == 'true'">
 		<Message Text="Copying DLL file to server" Importance="high" />
 		<MakeDir Directories="$(SERVER_DEPLOYPATH)\$(AssemblyName)" />
 		<Message Text="Copying $(TargetFileName) to $(SERVER_DEPLOYPATH)\$(AssemblyName)" Importance="high" />

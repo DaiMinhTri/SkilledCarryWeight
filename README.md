@@ -24,6 +24,11 @@ Formula: `ModifiedMass = Max(Mass * (1 - MaxMassReduction), Mass * (MinCarryWeig
 ### Quick Cart
 Press a hotkey (default `H`) to quickly attach to or detach from a nearby cart. Configurable attach distance and out-of-place attachment option.
 
+## Differences from Searica's Version
+
+- **No Jotunn dependency** — This fork embeds ServerSync directly, so it runs standalone without pulling in the full Jotunn library.
+- **Base for extending** — Designed as a lightweight foundation for adding new skills and methods. The embedded ServerSync + AccessTools reflection pattern makes it straightforward to extend with custom skill support or new carry weight mechanics.
+
 ### Server-Side Control
 Configuration is synced from the server using embedded ServerSync. Clients cannot change synced settings unless the server allows it. Settings are also hot-reloadable via a file watcher or in-game configuration manager.
 

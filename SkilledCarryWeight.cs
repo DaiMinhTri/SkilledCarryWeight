@@ -12,11 +12,9 @@ using SkilledCarryWeight.Extensions;
 using System;
 using ServerSync;
 
-
 namespace SkilledCarryWeight {
     [BepInPlugin(PluginGUID, PluginName, PluginVersion)]
     internal sealed class SkilledCarryWeight : BaseUnityPlugin {
-        internal const string Author = "DMT";
         public const string PluginName = "SkilledCarryWeight";
         public const string PluginGUID = $"DMT.{PluginName}";
         public const string PluginVersion = "1.5.0";
@@ -41,7 +39,6 @@ namespace SkilledCarryWeight {
         internal static ConfigEntry<KeyCode> QuickCartKey;
         internal static ConfigEntry<float> AttachDistance;
         internal static ConfigEntry<bool> AttachOutOfPlace;
-
 
         private static readonly string MainSection = ConfigManager.SetStringPriority("Global", 3);
         private static readonly string CartSection = ConfigManager.SetStringPriority("Cart Mass", 2);
@@ -74,12 +71,9 @@ namespace SkilledCarryWeight {
         }
 
         private static void OnSettingChanged(object sender, EventArgs e) {
-            if (!SettingsUpdated) { SettingsUpdated = true; }
+            SettingsUpdated = true;
         }
 
-        /// <summary>
-        ///     Set up configuration entries
-        /// </summary>
         internal static void Initialize() {
             Log.Verbosity = ConfigManager.BindConfig(
                 MainSection,
@@ -138,7 +132,6 @@ namespace SkilledCarryWeight {
             );
             MinCarryWeight.SettingChanged += OnSettingChanged;
 
-
             QuickCartKey = ConfigManager.BindConfig(
                 QuickCartSection,
                 "QuickCartKey",
@@ -167,7 +160,8 @@ namespace SkilledCarryWeight {
                 configSync: configSync
             );
 
-            foreach (var skillType in Skills.s_allSkills) {
+            var allSkills = (System.Collections.Generic.List<Skills.SkillType>)AccessTools.Field(typeof(Skills), "s_allSkills").GetValue(null);
+            foreach (var skillType in allSkills) {
                 if (skillType == Skills.SkillType.All) { continue; }
 
                 var skillName = skillType.ToString();
@@ -212,40 +206,20 @@ namespace SkilledCarryWeight {
         private static bool GetDefaultEnabledValue(Skills.SkillType skillType) {
             switch (skillType) {
                 case Skills.SkillType.Run:
-                    return true;
-
                 case Skills.SkillType.Jump:
-                    return true;
-
                 case Skills.SkillType.Swim:
-                    return true;
-
                 case Skills.SkillType.WoodCutting:
-                    return true;
-
                 case Skills.SkillType.Pickaxes:
-                    return true;
-
                 case Skills.SkillType.Ride:
-                    return true;
-
                 case Skills.SkillType.Sneak:
-                    return true;
-
                 case Skills.SkillType.Dodge:
-                    return true;
-
                 case Skills.SkillType.Farming:
                     return true;
-
                 default:
                     return false;
             }
         }
 
-        /// <summary>
-        ///     Check for quick cart attach/detatch
-        /// </summary>
         private void Update() {
             if (Input.GetKeyDown(QuickCartKey.Value) &&
                 PlayerCanAttach() &&
@@ -292,25 +266,15 @@ namespace SkilledCarryWeight {
 
     }
 
-    /// <summary>
-    ///     Log level to control output to BepInEx log
-    /// </summary>
     internal enum LogLevel {
         Low = 0,
         Medium = 1,
         High = 2,
     }
 
-    /// <summary>
-    ///     Helper class for properly logging from static contexts.
-    /// </summary>
     internal static class Log {
-        #region Verbosity
-
         internal static ConfigEntry<LogLevel> Verbosity { get; set; }
         internal static LogLevel VerbosityLevel => Verbosity.Value;
-
-        #endregion Verbosity
 
         internal static ManualLogSource _logSource;
 
@@ -322,51 +286,12 @@ namespace SkilledCarryWeight {
 
         internal static void LogError(object data) => _logSource.LogError(data);
 
-        internal static void LogFatal(object data) => _logSource.LogFatal(data);
-
         internal static void LogInfo(object data, LogLevel level = LogLevel.Low) {
             if (Verbosity is null || VerbosityLevel >= level) {
                 _logSource.LogInfo(data);
             }
         }
 
-        internal static void LogMessage(object data) => _logSource.LogMessage(data);
-
         internal static void LogWarning(object data) => _logSource.LogWarning(data);
-
-        #region Logging Unity Objects
-
-        internal static void LogGameObject(GameObject prefab, bool includeChildren = false) {
-            LogInfo("***** " + prefab.name + " *****");
-            foreach (Component compo in prefab.GetComponents<Component>()) {
-                LogComponent(compo);
-            }
-
-            if (!includeChildren) { return; }
-
-            LogInfo("***** " + prefab.name + " (children) *****");
-            foreach (Transform child in prefab.transform) {
-                LogInfo($" - {child.gameObject.name}");
-                foreach (Component compo in child.gameObject.GetComponents<Component>()) {
-                    LogComponent(compo);
-                }
-            }
-        }
-
-        internal static void LogComponent(Component compo) {
-            LogInfo($"--- {compo.GetType().Name}: {compo.name} ---");
-
-            PropertyInfo[] properties = compo.GetType().GetProperties(ReflectionUtils.AllBindings);
-            foreach (var property in properties) {
-                LogInfo($" - {property.Name} = {property.GetValue(compo)}");
-            }
-
-            FieldInfo[] fields = compo.GetType().GetFields(ReflectionUtils.AllBindings);
-            foreach (var field in fields) {
-                LogInfo($" - {field.Name} = {field.GetValue(compo)}");
-            }
-        }
-
-        #endregion Logging Unity Objects
     }
 }

@@ -4,7 +4,6 @@
 
 	<PropertyGroup>
 		<TargetFramework>net48</TargetFramework>
-		<OutputType>Library</OutputType>
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 		<LangVersion>10.0</LangVersion>
 		<NoWarn>CS8632</NoWarn>
@@ -18,20 +17,14 @@
 		<ErrorReport>prompt</ErrorReport>
 		<WarningLevel>4</WarningLevel>
 		<EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
-		<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
-		<Prefer32Bit>false</Prefer32Bit>
 	</PropertyGroup>
 	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
 		<DebugType>pdbonly</DebugType>
 		<Optimize>true</Optimize>
 		<OutputPath>bin\Release\</OutputPath>
-		<DefineConstants>
-		</DefineConstants>
 		<ErrorReport>prompt</ErrorReport>
 		<WarningLevel>4</WarningLevel>
 		<EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
-		<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
-		<Prefer32Bit>false</Prefer32Bit>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(OS)' == 'Windows_NT'">
 		<StartAction>Program</StartAction>
@@ -84,7 +77,4 @@
 			<SpecificVersion>False</SpecificVersion>
 		</Reference>
 	</ItemGroup>
-	<PropertyGroup>
-		<GeneratePackageOnBuild>False</GeneratePackageOnBuild>
-	</PropertyGroup>
 </Project>

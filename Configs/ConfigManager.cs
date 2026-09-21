@@ -92,7 +92,6 @@ namespace SkilledCarryWeight.Configs
         /// </summary>
         /// <param name="sectionName">Section name</param>
         /// <param name="priority">Number of ZWS chars to prepend</param>
-        /// <returns></returns>
         internal static string SetStringPriority(string sectionName, int priority)
         {
             if (priority == 0) { return sectionName; }
@@ -118,7 +117,6 @@ namespace SkilledCarryWeight.Configs
         ///     Sets SaveOnConfigSet to false and returns
         ///     the value prior to calling this method.
         /// </summary>
-        /// <returns></returns>
         internal static bool DisableSaveOnConfigSet()
         {
             var val = configFile.SaveOnConfigSet;
@@ -163,11 +161,10 @@ namespace SkilledCarryWeight.Configs
             {
                 Log.LogInfo("Reloading config file");
 
-                // turn off saving on config entry set
                 var saveOnConfigSet = DisableSaveOnConfigSet();
                 configFile.Reload();
-                SaveOnConfigSet(saveOnConfigSet); // reset config saving state
-                InvokeOnConfigFileReloaded(); // fire event
+                SaveOnConfigSet(saveOnConfigSet);
+                InvokeOnConfigFileReloaded();
             }
             catch
             {

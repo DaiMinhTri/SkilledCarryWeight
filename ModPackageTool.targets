@@ -68,7 +68,7 @@
 		<Message Text="Copying $(SolutionDir)manifest.json to $(PublishDir)\ThunderStore" Importance="high" Condition="Exists('$(SolutionDir)manifest.json') AND !Exists('$(PackageDir)\manifest.json')" />
 		<Copy SourceFiles="$(SolutionDir)manifest.json" DestinationFolder="$(PublishDir)\ThunderStore" Condition="Exists('$(SolutionDir)manifest.json') AND !Exists('$(PackageDir)\manifest.json')" />
 
-		<Message Text="Copying $(PackageDir)\icon.png to $(PublishDir)\ThunderStore" Importance="high" Condition="Exists('$(PackageDir)\icon.png') AND !Exists('$(PackageDir)\icon.png')" />
+		<Message Text="Copying $(PackageDir)\icon.png to $(PublishDir)\ThunderStore" Importance="high" Condition="Exists('$(PackageDir)\icon.png')" />
 		<Copy SourceFiles="$(PackageDir)\icon.png" DestinationFolder="$(PublishDir)\ThunderStore" Condition="Exists('$(PackageDir)\icon.png')" />
 
 		<Message Text="Compressing..." Importance="high" />

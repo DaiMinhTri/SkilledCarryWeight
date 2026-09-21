@@ -17,6 +17,5 @@
 		<SERVER_DEPLOYPATH>$(VALHEIM_SERVER)\BepInEx\plugins</SERVER_DEPLOYPATH>
 
 		<CopyToServer>false</CopyToServer>
-		<CopyResources>false</CopyResources>
 	</PropertyGroup>
 </Project>
